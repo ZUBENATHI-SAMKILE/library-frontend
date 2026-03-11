@@ -390,11 +390,7 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 }
 
 .modal-close:hover { background: var(--danger); color: #fff; }
-
 .modal-body { padding: 1.5rem; }
-
-/* ── Scene & Background ─────────────────────────────────────────── */
-
 .auth-scene {
   min-height: 100vh;
   width: 100%;
@@ -407,7 +403,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   background: #1a2e1a;
 }
 
-/* Background image */
 .auth-scene::before {
   content: "";
   position: absolute;
@@ -419,7 +414,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   z-index: 0;
 }
 
-/* Dark overlay for readability */
 .auth-scene::after {
   content: "";
   position: absolute;
@@ -427,8 +421,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   background: rgba(0, 0, 0, 0.52);
   z-index: 1;
 }
-
-/* ── Card ───────────────────────────────────────────────────────── */
 
 .auth-float-card {
   position: relative;
@@ -457,8 +449,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   max-width: 520px;
 }
 
-/* ── Logo ───────────────────────────────────────────────────────── */
-
 .auth-logo-wrap {
   display: flex;
   justify-content: center;
@@ -483,8 +473,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   50% { box-shadow: 0 8px 36px rgba(45, 74, 45, 0.7); }
 }
 
-/* ── Typography ─────────────────────────────────────────────────── */
-
 .auth-headline {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
@@ -503,8 +491,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   font-style: italic;
 }
 
-/* ── Alert ──────────────────────────────────────────────────────── */
-
 .auth-alert {
   background: rgba(192, 57, 43, 0.08);
   border: 1px solid rgba(192, 57, 43, 0.25);
@@ -515,8 +501,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   margin-bottom: 1.25rem;
   text-align: center;
 }
-
-/* ── Form ───────────────────────────────────────────────────────── */
 
 .auth-form-inner {
   display: flex;
@@ -573,8 +557,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   color: #a09880;
 }
 
-/* ── Submit Button ──────────────────────────────────────────────── */
-
 .auth-submit {
   width: 100%;
   padding: 0.9rem;
@@ -610,8 +592,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   cursor: not-allowed;
 }
 
-/* ── Spinner ────────────────────────────────────────────────────── */
-
 .auth-spinner {
   width: 18px;
   height: 18px;
@@ -625,8 +605,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-
-/* ── Footer ─────────────────────────────────────────────────────── */
 
 .auth-footer-text {
   text-align: center;
@@ -654,8 +632,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   margin: 0.5rem 0 0;
   font-style: italic;
 }
-
-/* ── Badges ─────────────────────────────────────────────────────── */
 
 .auth-badges {
   display: flex;
@@ -790,7 +766,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 .reports-grid { display: grid; gap: 1.5rem; }
 .report-card { padding: 0; overflow: hidden; }
 
-/* Fines summary */
 .fines-summary {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -824,7 +799,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   font-weight: 600;
 }
 
-/* Filter tabs */
 .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
 .filter-tab {
@@ -884,7 +858,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tbody tr:hover { background: var(--surface2); transition: background 0.15s; }
 
-/* View Toggle */
 .view-toggle {
   display: flex;
   border: 1px solid var(--border);
@@ -904,7 +877,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 .view-btn:hover { background: var(--surface2); color: var(--text); }
 .view-btn.active { background: var(--accent); color: #fff; }
 
-/* Book Grid */
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -976,7 +948,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   gap: 0.4rem;
 }
 
-/* Table cover thumbnail */
 .table-cover {
   width: 40px;
   height: 56px;
@@ -1000,7 +971,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   font-size: 1.2rem;
 }
 
-/* Cover preview in modal */
 .cover-preview {
   margin-bottom: 1rem;
 }
@@ -1021,7 +991,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   box-shadow: var(--shadow);
 }
 
-/* Field hint */
 .field-hint {
   font-size: 0.75rem;
   color: var(--muted);
@@ -1060,7 +1029,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   color: var(--text);
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
-/* Member Portal Styles */
 
 .notifications-bar {
   display: flex;
@@ -1104,7 +1072,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 .member-stat-value { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); }
 .member-stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-top: 4px; }
 
-/* Browse Books */
 .member-books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
@@ -1159,7 +1126,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 .member-book-author { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; }
 .member-book-genre { margin-bottom: 8px; }
 
-/* Message bar */
 .message-bar {
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
@@ -1171,7 +1137,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 .message-bar.success { background: rgba(39,174,96,0.1); border: 1px solid rgba(39,174,96,0.3); color: var(--success); }
 .message-bar.danger { background: rgba(192,57,43,0.1); border: 1px solid rgba(192,57,43,0.3); color: var(--danger); }
 
-/* Fine alert */
 .fine-alert {
   background: rgba(230,126,34,0.1);
   border: 1px solid rgba(230,126,34,0.3);
@@ -1182,7 +1147,6 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
   margin-bottom: 1.5rem;
 }
 
-/* Profile */
 .page-header {
   margin-bottom: 25px;
 }
@@ -1194,7 +1158,7 @@ input::placeholder, textarea::placeholder { color: var(--muted); }
 }
 
 .page-title span {
-  color: #059418; /* highlight color */
+  color: #059418; 
 }
 
 .page-subtitle {

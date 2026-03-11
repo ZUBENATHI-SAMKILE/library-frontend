@@ -26,7 +26,7 @@ api.interceptors.response.use(
 
     const user = getCurrentUserSync();
 
-    // Never intercept auth or member portal endpoints
+    
     if (
       original.url?.includes("/auth/login/") ||
       original.url?.includes("/auth/register/") ||
@@ -66,7 +66,7 @@ api.interceptors.response.use(
   }
 );
 
-// ── Staff Auth ────────────────────────────────────────────────────────────────
+// Staff Auth 
 
 export async function login(email, password) {
   const { data } = await api.post("/auth/login/", { email, password });
@@ -104,7 +104,7 @@ export function getCurrentUser() {
   }
 }
 
-// ── Books (Staff) ─────────────────────────────────────────────────────────────
+// Books (Staff)
 
 export async function getBooks(params = {}) {
   const { data } = await api.get("/books/", { params });
@@ -125,8 +125,7 @@ export async function deleteBook(id) {
   await api.delete(`/books/${id}/`);
 }
 
-// ── Members (Staff) ───────────────────────────────────────────────────────────
-
+// Members (Staff)
 export async function getMembers(params = {}) {
   const { data } = await api.get("/members/", { params });
   return data;
@@ -146,7 +145,7 @@ export async function deleteMember(id) {
   await api.delete(`/members/${id}/`);
 }
 
-// ── Borrowings (Staff) ────────────────────────────────────────────────────────
+// Borrowings (Staff)
 
 export async function getBorrowings(params = {}) {
   const { data } = await api.get("/borrowings/", { params });
@@ -163,7 +162,7 @@ export async function returnBorrowing(id) {
   return data;
 }
 
-// ── Fines (Staff) ─────────────────────────────────────────────────────────────
+// Fines (Staff)
 
 export async function getFines(params = {}) {
   const { data } = await api.get("/fines/", { params });
@@ -175,7 +174,7 @@ export async function payFine(id) {
   return data;
 }
 
-// ── Reservations (Staff) ──────────────────────────────────────────────────────
+// Reservations (Staff)
 
 export async function getReservations(params = {}) {
   const { data } = await api.get("/reservations/", { params });
@@ -192,7 +191,7 @@ export async function cancelReservation(id) {
   return data;
 }
 
-// ── Dashboard & Admin (Staff) ─────────────────────────────────────────────────
+// Dashboard & Admin (Staff)
 
 export async function getDashboardStats() {
   const { data } = await api.get("/dashboard/stats/");
@@ -219,7 +218,7 @@ export async function getAdminReports() {
   return data;
 }
 
-// ── Member Auth ───────────────────────────────────────────────────────────────
+// Member Auth
 
 export async function memberRegister(name, email, password, phone = "", address = "") {
   const { data } = await api.post("/member/auth/register/", {
@@ -247,7 +246,7 @@ export async function updateMemberProfile(updates) {
   return data;
 }
 
-// ── Member Borrowings ─────────────────────────────────────────────────────────
+// Member Borrowings 
 
 export async function getMyBorrowings() {
   const { data } = await api.get("/member/borrowings/");
@@ -259,14 +258,14 @@ export async function renewBorrowing(id) {
   return data;
 }
 
-// ── Member Fines ──────────────────────────────────────────────────────────────
+// Member Fines 
 
 export async function getMyFines() {
   const { data } = await api.get("/member/fines/");
   return data;
 }
 
-// ── Member Reservations ───────────────────────────────────────────────────────
+// Member Reservations 
 
 export async function getMyReservations() {
   const { data } = await api.get("/member/reservations/");
@@ -283,7 +282,7 @@ export async function cancelMyReservation(id) {
   return data;
 }
 
-// ── Member Books ──────────────────────────────────────────────────────────────
+// Member Books 
 
 export async function browseBooks(params = {}) {
   const { data } = await api.get("/member/books/", { params });
