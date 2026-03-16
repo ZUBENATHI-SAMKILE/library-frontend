@@ -18,6 +18,9 @@ import MyBorrowings from "./pages/member/MyBorrowings";
 import MyFines from "./pages/member/MyFines";
 import MyReservations from "./pages/member/MyReservations";
 import MyProfile from "./pages/member/MyProfile";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+
 
 function StaffLayout({ children }) {
   return (
@@ -58,6 +61,8 @@ export default function App() {
         <Route path="/" element={<SmartHome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:uidb64/:token" element={<ResetPassword />} />
 
         {/* Staff routes */}
         <Route path="/dashboard" element={

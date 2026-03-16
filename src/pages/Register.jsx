@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { memberRegister } from "../api";
-import { BookOpen, User, Lock,Mail,Phone,Home,University } from "lucide-react";
+import { BookOpen, User, Lock, Mail, Phone, Home, University } from "lucide-react";
 
 export default function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    name: "", email: "", password: "", phone: "", address: "",
+    name: "", email: "", password: "", confirm_password: "", phone: "", address: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,6 +22,12 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    if (form.password !== form.confirm_password) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     setLoading(true);
     try {
       await memberRegister(
@@ -86,6 +92,18 @@ export default function Register() {
               />
             </div>
             <div className="auth-field">
+              <span className="field-icon"><Lock size={20} /></span>
+              <input
+                type="password"
+                name="confirm_password"
+                value={form.confirm_password}
+                onChange={handleChange}
+                placeholder="Confirm password"
+                minLength={6}
+                required
+              />
+            </div>
+            <div className="auth-field">
               <span className="field-icon"><Phone size={20} /></span>
               <input
                 type="text"
@@ -119,7 +137,7 @@ export default function Register() {
         </p>
 
         <p className="auth-note">
-            <University size={20} />Staff member? Login directly — no registration needed.
+          <University size={20} /> Staff member? Login directly — no registration needed.
         </p>
 
       </div>

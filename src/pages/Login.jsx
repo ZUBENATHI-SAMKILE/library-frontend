@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login, memberLogin, getCurrentUser } from "../api";
-import { BookOpen, User, Lock,Mail,Book } from "lucide-react";
+import { login, memberLogin } from "../api";
+import { BookOpen, User, Lock, Mail, Book } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -72,6 +72,12 @@ export default function Login() {
               placeholder="Password"
               required
             />
+          </div>
+
+          <div className="auth-forgot-wrap">
+            <Link to="/forgot-password" className="auth-link auth-link--small">
+              Forgot password?
+            </Link>
           </div>
 
           <button className="auth-submit" type="submit" disabled={loading}>
