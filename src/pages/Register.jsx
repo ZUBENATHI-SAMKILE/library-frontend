@@ -142,7 +142,7 @@ export default function Register() {
         </p>
 
         <p className="auth-note">
-          <University size={20} /> Staff member? Login directly — no registration needed.
+          <University size={20} /> Staff member? Login directly, no registration needed.
         </p>
 
       </div>
