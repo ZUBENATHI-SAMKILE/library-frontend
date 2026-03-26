@@ -220,12 +220,17 @@ export async function getAdminReports() {
 
 // Member Auth
 
-export async function memberRegister(name, email, password, phone = "", address = "") {
+export async function memberRegister(name, email, password, confirm_password) {
   const { data } = await api.post("/member/auth/register/", {
-    name, email, password, phone, address,
+    name,
+    email,
+    password,
+    confirm_password,
   });
+
   localStorage.setItem("access_token", data.token);
   localStorage.setItem("user", JSON.stringify({ ...data.member, role: "member" }));
+
   return data;
 }
 

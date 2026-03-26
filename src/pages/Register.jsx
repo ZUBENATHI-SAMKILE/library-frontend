@@ -31,11 +31,14 @@ export default function Register() {
     setLoading(true);
     try {
       await memberRegister(
-        form.name, form.email, form.password,
-        form.phone, form.address
+        form.name,
+        form.email,
+        form.password,
+        form.confirm_password   
       );
       navigate("/member/dashboard");
     } catch (err) {
+      console.log(err.response?.data);
       setError(err.response?.data?.error || "Registration failed. Please try again.");
     } finally {
       setLoading(false);
