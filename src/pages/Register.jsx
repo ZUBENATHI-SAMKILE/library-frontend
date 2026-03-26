@@ -34,7 +34,9 @@ export default function Register() {
         form.name,
         form.email,
         form.password,
-        form.confirm_password   
+        form.confirm_password,
+        form.phone,
+        form.address 
       );
       navigate("/member/dashboard");
     } catch (err) {
