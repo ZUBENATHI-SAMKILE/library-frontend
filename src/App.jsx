@@ -20,6 +20,7 @@ import MyReservations from "./pages/member/MyReservations";
 import MyProfile from "./pages/member/MyProfile";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import LandingPage from "./pages/LandingPage";
 
 
 function StaffLayout({ children }) {
@@ -48,7 +49,7 @@ function MemberRoute({ children }) {
 }
 
 function SmartHome() {
-  if (!isLoggedIn()) return <Navigate to="/login" replace />;
+  if (!isLoggedIn()) return <LandingPage />;
   const user = getCurrentUser();
   if (user?.role === "member") return <Navigate to="/member/dashboard" replace />;
   return <Navigate to="/dashboard" replace />;

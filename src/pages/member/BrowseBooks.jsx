@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { browseBooks, makeReservation } from "../../api";
 import { BookOpen } from "lucide-react";
 
-const IMG_BASE = "/covers/";
+const getCoverSrc = (cover) => {
+  if (!cover) return null;
+  return cover.startsWith("http") ? cover : `/covers/${cover}`;
+};
 
 export default function BrowseBooks() {
   const [books, setBooks] = useState([]);
@@ -49,10 +52,20 @@ export default function BrowseBooks() {
         <p className="page-subtitle">Search and reserve books from our collection</p>
       </div>
 
-      {message && <div className={`message-bar ${message.startsWith("✅") ? "success" : "danger"}`}>{message}</div>}
+      {message && (
+        <div className={`message-bar ${message.startsWith("✅") ? "success" : "danger"}`}>
+          {message}
+        </div>
+      )}
 
       <div className="page-toolbar">
-        <input type="text" placeholder="Search by title or author..." value={search} onChange={(e) => setSearch(e.target.value)} className="search-input" />
+        <input
+          type="text"
+          placeholder="Search by title or author..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="search-input"
+        />
         <select value={genre} onChange={(e) => setGenre(e.target.value)} style={{ width: "auto" }}>
           {GENRES.map((g) => <option key={g} value={g}>{g || "All Genres"}</option>)}
         </select>
@@ -70,10 +83,17 @@ export default function BrowseBooks() {
           {books.map((book) => (
             <div key={book.id} className="member-book-card">
               <div className="member-book-cover">
-                {book.cover_image
-                  ? <img src={`${IMG_BASE}${book.cover_image}`} alt={book.title} onError={(e) => { e.target.style.display = "none"; }} />
-                  : <div className="member-book-fallback"><Book size={48} color="white"/></div>
-                }
+                {book.cover_image ? (
+                  <img
+                    src={getCoverSrc(book.cover_image)}
+                    alt={book.title}
+                    onError={(e) => { e.target.style.display = "none"; }}
+                  />
+                ) : (
+                  <div className="member-book-fallback">
+                    <BookOpen size={48} color="white" />
+                  </div>
+                )}
                 <div className={`book-avail ${book.available_copies > 0 ? "available" : "unavailable"}`}>
                   {book.available_copies > 0 ? `${book.available_copies} available` : "Unavailable"}
                 </div>
@@ -81,7 +101,9 @@ export default function BrowseBooks() {
               <div className="member-book-info">
                 <p className="member-book-title">{book.title}</p>
                 <p className="member-book-author">{book.author}</p>
-                <p className="member-book-genre"><span className="badge badge-info">{book.genre}</span></p>
+                <p className="member-book-genre">
+                  <span className="badge badge-info">{book.genre}</span>
+                </p>
                 <button
                   className={`btn btn-sm ${book.available_copies > 0 ? "btn-primary" : "btn-secondary"}`}
                   onClick={() => handleReserve(book.id)}

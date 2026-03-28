@@ -46,7 +46,7 @@ export default function Dashboard() {
     <div>
       <div className="page-header">
         <h1 className="page-title">Dashboard</h1>
-        <p className="page-subtitle">Welcome back — here's what's happening in your library today.</p>
+        <p className="page-subtitle">Welcome back - here's what's happening in your library today.</p>
       </div>
 
       <div className="stats-grid">

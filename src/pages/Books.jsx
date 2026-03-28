@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Modal from "../components/Modal";
 import { getBooks, createBook, updateBook, deleteBook } from "../api";
-import { Library} from "lucide-react";
+import { Library } from "lucide-react";
 
 
 const EMPTY_FORM = {
@@ -10,11 +10,17 @@ const EMPTY_FORM = {
 };
 
 const MOCK_BOOKS = [
-  { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", genre: "Fiction", isbn: "9780743273565", year: 1925, total_copies: 5, available_copies: 3, cover_image: "the-great-gatsby.jpg" },
-  { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", genre: "Fiction", isbn: "9780061935466", year: 1960, total_copies: 4, available_copies: 2, cover_image: "To Kill a Mockingbird.jpg" },
-  { id: 3, title: "1984", author: "George Orwell", genre: "Dystopian", isbn: "9780451524935", year: 1949, total_copies: 6, available_copies: 5, cover_image: "1984.jpg" },
-  { id: 4, title: "Brave New World", author: "Aldous Huxley", genre: "Dystopian", isbn: "9780060850524", year: 1932, total_copies: 3, available_copies: 1, cover_image: "brave-new-world.jpg" },
-  { id: 5, title: "The Catcher in the Rye", author: "J.D. Salinger", genre: "Fiction", isbn: "9780316769174", year: 1951, total_copies: 4, available_copies: 4, cover_image: "the-catcher-in-the-rye.jpg" },
+  { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", genre: "Fiction", isbn: "9780743273565", year: 1925, total_copies: 5, available_copies: 3, cover_image: "https://ia600703.us.archive.org/view_archive.php?archive=/4/items/m_covers_0008/m_covers_0008_43.zip&file=0008432040-M.jpg" },
+  { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", genre: "Fiction", isbn: "9780061935466", year: 1960, total_copies: 4, available_copies: 2, cover_image: "https://covers.openlibrary.org/b/id/15153500-M.jpg" },
+  { id: 3, title: "1984", author: "George Orwell", genre: "Dystopian", isbn: "9780451524935", year: 1949, total_copies: 6, available_copies: 5, cover_image: "https://covers.openlibrary.org/b/id/15158861-M.jpg" },
+  { id: 4, title: "Brave New World", author: "Aldous Huxley", genre: "Dystopian", isbn: "9780060850524", year: 1932, total_copies: 3, available_copies: 1, cover_image: "https://covers.openlibrary.org/b/id/14887885-M.jpg" },
+  { id: 5, title: "The Catcher in the Rye", author: "J.D. Salinger", genre: "Fiction", isbn: "9780316769174", year: 1951, total_copies: 4, available_copies: 4, cover_image: "https://covers.openlibrary.org/b/id/15172466-M.jpg" },
+  { id: 6, title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling", genre: "Fiction", isbn: "9780747532699", year: 1997, total_copies: 5, available_copies: 5, cover_image: "https://covers.openlibrary.org/b/isbn/9780747532699-L.jpg" },
+  { id: 7, title: "The Alchemist", author: "Paulo Coelho", genre: "Fiction", isbn: "9780062315007", year: 1988, total_copies: 5, available_copies: 5, cover_image: "https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg" },
+  { id: 8, title: "Sapiens: A Brief History of Humankind", author: "Yuval Noah Harari", genre: "History", isbn: "9780062316097", year: 2011, total_copies: 5, available_copies: 5, cover_image: "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg" },
+  { id: 9, title: "The Great Alone", author: "Kristin Hannah", genre: "Fiction", isbn: "9780312577230", year: 2018, total_copies: 5, available_copies: 5, cover_image: "https://covers.openlibrary.org/b/isbn/9780312577230-L.jpg" },
+  { id: 10, title: "Atomic Habits", author: "James Clear", genre: "Non-Fiction", isbn: "9780735211292", year: 2018, total_copies: 5, available_copies: 5, cover_image: "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg" }
+
 ];
 
 export default function Books() {
@@ -25,7 +31,7 @@ export default function Books() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [view, setView] = useState("grid"); 
+  const [view, setView] = useState("grid");
 
   const load = async () => {
     try {
@@ -74,9 +80,9 @@ export default function Books() {
     setBooks((prev) => prev.filter((b) => b.id !== id));
   };
 
-  const getCoverSrc = (filename) => {
-    if (!filename) return null;
-    return `/covers/${filename}`;
+  const getCoverSrc = (url) => {
+    if (!url) return null;
+    return url;
   };
 
   const filtered = books.filter((b) =>
@@ -123,7 +129,10 @@ export default function Books() {
                   <img
                     src={getCoverSrc(book.cover_image)}
                     alt={book.title}
-                    onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }}
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.nextSibling.style.display = "flex";
+                    }}
                   />
                 ) : null}
                 <div className="book-cover-fallback" style={{ display: book.cover_image ? "none" : "flex" }}>
@@ -244,26 +253,31 @@ export default function Books() {
               </div>
             </div>
 
-            {/* Cover Image */}
             <div className="form-group">
-              <label>Cover Image Filename</label>
+              <label>Cover Image URL</label>
               <input
                 name="cover_image"
                 value={form.cover_image}
                 onChange={handleChange}
-                placeholder="e.g. the-great-gatsby.jpg"
+                placeholder="e.g. https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg"
               />
-              <p className="field-hint">Place your image file in the <code>public/covers/</code> folder and enter the filename here.</p>
+              <p className="field-hint">
+                Paste a direct image URL. Use{" "}
+                <a href="https://covers.openlibrary.org" target="_blank" rel="noreferrer">
+                  Open Library Covers
+                </a>{" "}
+                for free book covers — format:{" "}
+                <code>https://covers.openlibrary.org/b/isbn/YOUR_ISBN-L.jpg</code>
+              </p>
             </div>
 
-            {/* Preview */}
             {form.cover_image && (
               <div className="cover-preview">
                 <p className="cover-preview-label">Preview:</p>
                 <img
-                  src={`/covers/${form.cover_image}`}
+                  src={form.cover_image}
                   alt="Cover preview"
-                  onError={(e) => { e.target.src = ""; e.target.alt = "Image not found — check filename"; }}
+                  onError={(e) => { e.target.alt = "Image not found — check URL"; }}
                 />
               </div>
             )}
